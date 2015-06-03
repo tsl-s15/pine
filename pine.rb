@@ -152,29 +152,177 @@
 # puts "No more bottles of beer on the wall, no more bottles of beer. Go to the store and buy some more, 99 bottles of beer on the wall."
 
 
-
-
 ## old-school roman numerals
 
+# def old_roman_numeral num # 23
+#   roman = ''
+#   roman = roman + 'M' * (num / 1000)
+#   roman = roman + 'D' * (num % 1000 / 500)
+#   roman = roman + 'C' * (num % 500 / 100)
+#   roman = roman + 'L' * (num % 100 / 50)
+#   roman = roman + 'X' * (num % 50 / 10)
+#   roman = roman + 'V' * (num % 10 / 5)
+#   roman = roman + 'I' * (num % 5 / 1)
+#   roman
+# end
 
-# num = 10
-# puts num % 3 # => 1
+# puts old_roman_numeral(3243) # => XXIII
 
 
-def old_roman(num)
-  tens = "X" * (num/10)
-  temp_ones = num%10
-  if temp_ones > 5
-    ones =  "V" + ("I" * (temp_ones - 5))
-  elsif temp_ones == 5
-    ones =  "V"
-  else
-    ones = "I" * temp_ones
+# def roman_numeral num # 59
+#   # thous = (num / 1000)
+#   # hunds = (num % 1000 / 100)
+#   tens = (num % 100 / 10) # 5
+#   ones = (num % 10 ) # 9
+#   # roman = 'M' * thous
+#   roman = ''
+
+
+#   # if hunds == 9
+#   #   roman = roman + 'CM'
+#   # elsif hunds == 4
+#   #   roman = roman + 'CD'
+#   # else
+#   #   roman = roman + 'D' * (num % 1000 / 500)
+#   #   roman = roman + 'C' * (num % 500 / 100)
+#   # end
+
+#   if tens == 9
+#     roman = roman + 'XC'
+#   elsif tens == 4
+#     roman = roman + 'XL'
+#   else
+#     roman = roman + 'L' * (num % 100 / 50) # 1
+#     roman = roman + 'X' * (num % 50 / 10) # 0
+#   end
+
+#   if ones == 9
+#     roman = roman + 'IX'
+#   elsif ones == 4
+#     roman = roman + 'IV'
+#   else
+#     roman = roman + 'V' * (num % 10 / 5)
+#     roman = roman + 'I' * (num % 5 / 1)
+#   end
+
+#   roman
+# end
+# puts(roman_numeral(59))
+
+
+
+
+
+
+### Creating new classes
+
+
+## puppy example
+# class Puppy
+#   attr_accessor :age, :name, :health
+
+#   def age
+#     return @age
+#   end
+
+#   def age=(input)
+#     @age = input
+#   end
+
+#   def initialize(age, name)
+#     self.age = age
+#     self.name = name
+#     self.health = 5
+#   end
+
+#   def feed
+#     self.health = self.health + 1
+#     puts "Your puppy's health is now #{self.health}"
+#   end
+
+# end
+
+# p1 = Puppy.new(3, "Mowgli")
+# p1.name = "Hunter"
+# puts p1.inspect
+# puts "Your puppy's age is #{p1.age}"
+# p1.age = 5
+# puts "Your puppy's age is #{p1.age}"
+
+# puts "What do you want to do?"
+# response = gets.chomp
+# if response == "feed"
+#   p1.feed
+# end
+
+
+
+## orange tree
+
+class OrangeTree
+  attr_accessor :height, :age, :fruits, :living
+
+  # this sets default values
+  def initialize
+    self.height = 0
+    self.age = 0
+    self.fruits = 0
+    self.living = true
   end
-  return tens + ones
+
+  def one_year_passes
+    if self.age < 50
+      self.grow_older
+      self.grow_taller
+      self.grow_fruit
+      puts "your tree is now #{self.age} years old, #{self.height} feet tall and has #{self.fruits} fruits"
+    else
+      puts "DEAD"
+    end
+  end
+
+  def grow_fruit
+    if self.age > 3
+      self.fruits = 2 + self.age * 2
+    end
+  end
+
+  def grow_older
+    self.age = self.age + 1
+  end
+
+  def grow_taller
+    self.height = self.height + 2
+  end
+
+  def print_fruit_count
+    puts "Your tree has #{self.fruits} fruit."
+  end
+
+
+  def pick_fruit
+    self.fruits = self.fruits - 1
+    self.print_fruit_count
+  end
+
+
 end
 
-puts old_roman(23) # => XXIII
+tree = OrangeTree.new
+puts tree.inspect
+tree.one_year_passes
+tree.one_year_passes
+tree.one_year_passes
+tree.one_year_passes
+tree.pick_fruit
+tree.one_year_passes
+tree.one_year_passes
+tree.one_year_passes
+tree.one_year_passes
+tree.one_year_passes
+
+
+
 
 
 
